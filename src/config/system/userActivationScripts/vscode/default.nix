@@ -11,8 +11,8 @@ _: with _; utils.script {
         packages.nixpkgs.vscode-extensions.jkillian.custom-local-formatters
         packages.nixpkgs.vscode-extensions.haskell.haskell
         packages.nixpkgs.vscode-extensions.mads-hartmann.bash-ide-vscode
-        packages.nixpkgs.vscode-extensions.ms-python.python
-        packages.nixpkgs.vscode-extensions.ms-python.vscode-pylance
+        # packages.nixpkgs.vscode-extensions.ms-python.python
+        # packages.nixpkgs.vscode-extensions.ms-python.vscode-pylance
         packages.nixpkgs.vscode-extensions.shardulm94.trailing-spaces
         packages.nixpkgs.vscode-extensions.streetsidesoftware.code-spell-checker
         packages.nixpkgs.vscode-extensions.tamasfe.even-better-toml
