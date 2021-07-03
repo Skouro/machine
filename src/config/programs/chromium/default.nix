@@ -17,15 +17,15 @@ _: with _; {
       }
       {
         name = "diff";
-        url = "https://gitlab.com/fluidattacks/product/-/compare/master...kamadoatfluid";
+        url = "https://gitlab.com/fluidattacks/product/-/compare/master...drestrepoatfluid";
       }
       {
         name = "pipelines";
-        url = "https://gitlab.com/fluidattacks/product/-/pipelines?page=1&scope=all&ref=kamadoatfluid";
+        url = "https://gitlab.com/fluidattacks/product/-/pipelines?page=1&scope=all&ref=drestrepoatfluid";
       }
       {
         name = "makes-pr";
-        url = "https://github.com/fluidattacks/makes/compare/main...kamadorueda:main";
+        url = "https://github.com/fluidattacks/makes/compare/main...drestreporueda:main";
       }
       {
         name = "nixos-options";

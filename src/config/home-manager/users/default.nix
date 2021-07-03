@@ -221,13 +221,13 @@ _: with _;{
             extraOptions = {
               PreferredAuthentications = "publickey";
             };
-            identityFile = "${abs.secrets}/machine/ssh/kamadorueda";
+            identityFile = "${abs.secrets}/machine/ssh/drestrepo";
           };
           "gitlab.com" = {
             extraOptions = {
               PreferredAuthentications = "publickey";
             };
-            identityFile = "${abs.secrets}/machine/ssh/kamadorueda";
+            identityFile = "${abs.secrets}/machine/ssh/drestrepo";
           };
         };
       };

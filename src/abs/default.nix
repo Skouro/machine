@@ -1,14 +1,14 @@
 _: with _; {
   editor = "${packages.nixpkgs.vscode}/bin/code --extensions-dir /data/vscode/extensions --user-data-dir /data/vscode/data";
-  email = "kamadorueda@gmail.com";
-  emailAtWork = "kamado@fluidattacks.com";
+  email = "restrepomesadiego@gmail.com";
+  emailAtWork = "drestrepo@fluidattacks.com";
   font = "ProFont for Powerline";
-  home = "/home/kamadorueda";
+  home = "/home/drestrepo";
   locale = "en_US.UTF-8";
-  machine = "/data/github/kamadorueda/machine";
-  name = "Kevin Amado";
+  machine = "/data/github/drestrepo/machine";
+  name = "Diego Restrepo";
   product = "/data/gitlab/fluidattacks/product";
-  secrets = "/data/github/kamadorueda/secrets";
+  secrets = "/data/github/drestrepo/secrets";
   signingkey = "FFF341057F503148";
-  username = "kamadorueda";
+  username = "drestrepo";
 }
