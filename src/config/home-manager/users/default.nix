@@ -9,7 +9,7 @@ _: with _;{
           screen-magnifier-enabled = false;
         };
         "org/gnome/desktop/a11y/magnifier" = {
-          lens-mode = true;
+          lens-mode = false;
           mag-factor = 2.0;
           mouse-tracking = "proportional";
           screen-position = "full-screen";
@@ -46,7 +46,7 @@ _: with _;{
           theme = "HighContrast";
         };
         "org/gnome/settings-daemon/plugins/color" = {
-          night-light-enabled = true;
+          night-light-enabled = false;
           night-light-schedule-automatic = false;
           night-light-schedule-from = 12.0;
           night-light-schedule-to = 11.99;
@@ -105,7 +105,7 @@ _: with _;{
         enable = true;
         extraConfig = {
           commit = {
-            gpgsign = true;
+            gpgsign = false;
           };
           core = {
             editor = "${abs.editor} --wait";
@@ -130,7 +130,7 @@ _: with _;{
           };
           gpg = {
             progam = "${packages.nixpkgs.gnupg}/bin/gpg2";
-            sign = true;
+            sign = false;
           };
           init = {
             defaultBranch = "main";
