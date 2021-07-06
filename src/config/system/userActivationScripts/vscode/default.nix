@@ -11,8 +11,8 @@ _: with _; utils.script {
         packages.nixpkgs.vscode-extensions.jkillian.custom-local-formatters
         packages.nixpkgs.vscode-extensions.haskell.haskell
         packages.nixpkgs.vscode-extensions.mads-hartmann.bash-ide-vscode
-        # packages.nixpkgs.vscode-extensions.ms-python.python
-        # packages.nixpkgs.vscode-extensions.ms-python.vscode-pylance
+        packages.nixpkgs.vscode-extensions.ms-python.python
+        packages.nixpkgs.vscode-extensions.ms-python.vscode-pylance
         packages.nixpkgs.vscode-extensions.shardulm94.trailing-spaces
         packages.nixpkgs.vscode-extensions.streetsidesoftware.code-spell-checker
         packages.nixpkgs.vscode-extensions.tamasfe.even-better-toml
@@ -70,7 +70,7 @@ _: with _; utils.script {
       "editor.minimap.maxColumn" = 80;
       "editor.minimap.renderCharacters" = false;
       "editor.minimap.showSlider" = "always";
-      "editor.minimap.side" = "left";
+      "editor.minimap.side" = "rigth";
       "editor.minimap.size" = "fill";
       "editor.rulers" = [ 80 ];
       "editor.tabSize" = 2;
@@ -108,8 +108,8 @@ _: with _; utils.script {
       "telemetry.enableTelemetry" = false;
       "update.mode" = "none";
       "update.showReleaseNotes" = false;
-      "window.zoomLevel" = 2;
-      "workbench.colorTheme" = "Default High Contrast";
+      "window.zoomLevel" = 1;
+      "workbench.colorTheme" = "Default Dark";
       "workbench.editor.enablePreview" = false;
       "workbench.editor.focusRecentEditorAfterClose" = false;
       "workbench.editor.openPositioning" = "last";

@@ -1,12 +1,12 @@
 echo 'settings vscode...'
 
 # Create --user-data-dir
-rm -rf /data/vscode/data
-mkdir -p /data/vscode/data/User
-echo "${argSettings}" > /data/vscode/data/User/settings.json
+rm -rf /home/vscode/data
+mkdir -p /home/vscode/data/User
+echo "${argSettings}" > /home/vscode/data/User/settings.json
 
 # Create --extensions-dir
-if ! test -e /data/vscode/extensions; then
-  mkdir -p /data/vscode/extensions
-  cp -L --no-preserve=mode -R "${argExtensions}/share/vscode/extensions/"* /data/vscode/extensions
+if ! test -e /home/vscode/extensions; then
+  mkdir -p /home/vscode/extensions
+  cp -L --no-preserve=mode -R "${argExtensions}/share/vscode/extensions/"* /home/vscode/extensions
 fi
