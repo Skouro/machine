@@ -180,9 +180,9 @@
               mkdir -p /home/gitlab/fluidattacks \
           &&  pushd /home/gitlab/fluidattacks \
             &&  git clone git@gitlab.com:fluidattacks/product \
-            &&  git -C product config user.email kamado@fluidattacks.com \
+            &&  git -C product config user.email drestrepo@fluidattacks.com \
             &&  git clone git@gitlab.com:fluidattacks/services \
-            &&  git -C services config user.email kamado@fluidattacks.com \
+            &&  git -C services config user.email drestrepo@fluidattacks.com \
           &&  popd
           ```
         </details>
