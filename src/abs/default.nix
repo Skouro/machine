@@ -9,6 +9,6 @@ _: with _; {
   name = "Diego Restrepo";
   product = "/home/gitlab/fluidattacks/product";
   secrets = "/home/github/drestrepom/secrets";
-  signingkey = "FFF341057F503148";
+  signingkey = "7847400F52AF3CC1";
   username = "drestrepo";
 }
