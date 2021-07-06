@@ -105,7 +105,7 @@ _: with _;{
         enable = true;
         extraConfig = {
           commit = {
-            gpgsign = false;
+            gpgsign = true;
           };
           core = {
             editor = "${abs.editor} --wait";
@@ -130,7 +130,7 @@ _: with _;{
           };
           gpg = {
             progam = "${packages.nixpkgs.gnupg}/bin/gpg2";
-            sign = false;
+            sign = true;
           };
           init = {
             defaultBranch = "main";
@@ -221,13 +221,13 @@ _: with _;{
             extraOptions = {
               PreferredAuthentications = "publickey";
             };
-            identityFile = "${abs.secrets}/machine/ssh/drestrepo";
+            identityFile = "${abs.secrets}/machine/ssh/drestrepom";
           };
           "gitlab.com" = {
             extraOptions = {
               PreferredAuthentications = "publickey";
             };
-            identityFile = "${abs.secrets}/machine/ssh/drestrepo";
+            identityFile = "${abs.secrets}/machine/ssh/drestrepom";
           };
         };
       };
