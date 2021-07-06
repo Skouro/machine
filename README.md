@@ -3,7 +3,7 @@
 - Powered by [NixOS](https://nixos.org/) and four partitions:
   - `/`, ephemeral, **deleted** at EVERY boot
   - `/boot`
-  - `/data`, persistent, where my important data lives in
+  - `/home`, persistent, where my important home lives in
   - `/nix`, persistent, but mounted as **read-only**
 
 ## Setup
@@ -55,7 +55,7 @@
         (parted) set "${number}" esp on
 
         # Setup other partitions
-        (parted) mkpart data "${start}" "${end}" # 50 GiB
+        (parted) mkpart home "${start}" "${end}" # 50 GiB
         (parted) mkpart nix "${start}" "${end}" # 100 GiB
         (parted) mkpart root "${start}" "${end}" # 50 GiB
       ```
@@ -65,24 +65,24 @@
       <summary>Finish NixOS installation.</summary>
 
       ```bash
-      cryptsetup luksFormat /dev/disk/by-partlabel/data
+      cryptsetup luksFormat /dev/disk/by-partlabel/home
       cryptsetup luksFormat /dev/disk/by-partlabel/nix
       cryptsetup luksFormat /dev/disk/by-partlabel/root
-      cryptsetup luksOpen /dev/disk/by-partlabel/data cryptdata
+      cryptsetup luksOpen /dev/disk/by-partlabel/home crypthome
       cryptsetup luksOpen /dev/disk/by-partlabel/nix cryptnix
       cryptsetup luksOpen /dev/disk/by-partlabel/root cryptroot
 
       mkfs.fat -F 32 -n boot /dev/disk/by-partlabel/ESP
-      mkfs.ext4 -L data /dev/mapper/cryptdata
+      mkfs.ext4 -L home /dev/mapper/crypthome
       mkfs.ext4 -L nix /dev/mapper/cryptnix
       mkfs.ext4 -L root /dev/mapper/cryptroot
 
       mount /dev/disk/by-label/root /mnt
       mkdir /mnt/boot
-      mkdir /mnt/data
+      mkdir /mnt/home
       mkdir /mnt/nix
       mount /dev/disk/by-partlabel/ESP /mnt/boot
-      mount /dev/disk/by-label/data /mnt/data
+      mount /dev/disk/by-label/home /mnt/home
       mount /dev/disk/by-label/nix /mnt/nix
 
       nixos-generate-config --root /mnt
@@ -111,7 +111,7 @@
       fi
       cd "$(mktemp -d)"
       nix-shell -p git just
-      git clone https://github.com/kamadorueda/machine
+      git clone https://github.com/drestrepom/machine
       cd machine
       just rebuild switch
       reboot
@@ -119,30 +119,30 @@
     </details>
 
 1. Get your GitHub API token from the
-    [secrets file](https://github.com/kamadorueda/secrets/blob/master/machine/secrets.sh)
+    [secrets file](https://github.com/drestrepom/secrets/blob/master/machine/secrets.sh)
     and export it into the terminal.
 
 1.  <details>
       <summary>Setup the state.</summary>
 
       - <details>
-          <summary>github/kamadorueda/machine</summary>
+          <summary>github/drestrepom/machine</summary>
 
           ```bash
-                mkdir -p /data/github/kamadorueda \
-            &&  pushd /data/github/kamadorueda \
-              &&  git clone "https://kamadorueda:${GITHUB_API_TOKEN}@github.com/kamadorueda/machine" \
+                mkdir -p /home/github/drestrepom \
+            &&  pushd /home/github/drestrepom \
+              &&  git clone "https://drestrepom:${GITHUB_API_TOKEN}@github.com/drestrepom/machine" \
             &&  popd
           ```
         </details>
 
       - <details>
-          <summary>github/kamadorueda/secrets</summary>
+          <summary>github/drestrepom/secrets</summary>
 
           ```bash
-              mkdir -p /data/github/kamadorueda \
-          &&  pushd /data/github/kamadorueda \
-            &&  git clone --depth 1 "https://kamadorueda:${GITHUB_API_TOKEN}@github.com/kamadorueda/secrets" \
+              mkdir -p /home/github/drestrepom \
+          &&  pushd /home/github/drestrepom \
+            &&  git clone --depth 1 "https://drestrepom:${GITHUB_API_TOKEN}@github.com/drestrepom/secrets" \
             &&  cd secrets/machine \
               &&  ./install.sh \
           &&  popd
@@ -153,9 +153,9 @@
           <summary>github/fluidattacks</summary>
 
           ```bash
-              mkdir -p /data/github/kamadorueda \
-          &&  pushd /data/github/kamadorueda \
-            &&  git clone git@github.com:kamadorueda/makes \
+              mkdir -p /home/github/drestrepom \
+          &&  pushd /home/github/drestrepom \
+            &&  git clone git@github.com:drestrepom/makes \
             &&  git -C makes remote add upstream git@github.com:fluidattacks/makes \
           &&  popd
           ```
@@ -165,9 +165,9 @@
           <summary>github/nixos</summary>
 
           ```bash
-              mkdir -p /data/github/nixos \
-          &&  pushd /data/github/nixos \
-            &&  git clone git@github.com:kamadorueda/nixpkgs \
+              mkdir -p /home/github/nixos \
+          &&  pushd /home/github/nixos \
+            &&  git clone git@github.com:drestrepom/nixpkgs \
             &&  git -C nixpkgs remote add upstream git@github.com:nixos/nixpkgs \
           &&  popd
           ```
@@ -177,8 +177,8 @@
           <summary>gitlab/fluidattacks</summary>
 
           ```bash
-              mkdir -p /data/gitlab/fluidattacks \
-          &&  pushd /data/gitlab/fluidattacks \
+              mkdir -p /home/gitlab/fluidattacks \
+          &&  pushd /home/gitlab/fluidattacks \
             &&  git clone git@gitlab.com:fluidattacks/product \
             &&  git -C product config user.email kamado@fluidattacks.com \
             &&  git clone git@gitlab.com:fluidattacks/services \
