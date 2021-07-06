@@ -8,5 +8,5 @@ echo "${argSettings}" > /home/vscode/data/User/settings.json
 # Create --extensions-dir
 if ! test -e /home/vscode/extensions; then
   mkdir -p /home/vscode/extensions
-  cp -L --no-preserve=mode -R "${argExtensions}/share/vscode/extensions/"* /home/vscode/extensions
 fi
+cp -L --no-preserve=mode -R "${argExtensions}/share/vscode/extensions/"* /home/vscode/extensions

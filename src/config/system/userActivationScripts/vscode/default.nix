@@ -16,6 +16,37 @@ _: with _; utils.script {
         packages.nixpkgs.vscode-extensions.shardulm94.trailing-spaces
         packages.nixpkgs.vscode-extensions.streetsidesoftware.code-spell-checker
         packages.nixpkgs.vscode-extensions.tamasfe.even-better-toml
+      ] ++ packages.nixpkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "remote-ssh-edit";
+          publisher = "ms-vscode-remote";
+          version = "0.47.2";
+          sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
+        }
+        {
+          name = "terminal";
+          publisher = "formulahendry";
+          version = "0.0.10";
+          sha256 = "0gj71xy7r82n1pic00xsi04dg7zg0dsxx000s03iq6lnz47s84gn";
+        }
+        {
+          name = "vscodeintellicode";
+          publisher = "visualstudioexptteam";
+          version = "1.2.14";
+          sha256 = "1j72v6grwasqk34m1jy3d6w3fgrw0dnsv7v17wca8baxrvgqsm6g";
+        }
+        {
+          name = "vscode-icons";
+          publisher = "vscode-icons-team";
+          version = "11.5.0";
+          sha256 = "0l7vmi5d1kf5f02d1zzvx29v4qvwxwlfc4bn1lf0nz7kl6aa4j5q";
+        }
+        {
+          name = "magicpython";
+          publisher = "magicstack";
+          version = "1.1.0";
+          sha256 = "08zwzjw2j2ilisasryd73x63ypmfv7pcap66fcpmkmnyb7jgs6nv";
+        }
       ];
     };
     argSettings = builtins.toJSON {
