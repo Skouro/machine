@@ -4,6 +4,7 @@ echo 'settings vscode...'
 rm -rf /home/vscode/data
 mkdir -p /home/vscode/data/User
 echo "${argSettings}" > /home/vscode/data/User/settings.json
+echo "${argsKeyBindings}" > /home/vscode/data/User/keybindings.json
 
 # Create --extensions-dir
 if ! test -e /home/vscode/extensions; then

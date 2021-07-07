@@ -9,6 +9,7 @@ _: with _; utils.script {
         packages.nixpkgs.vscode-extensions.coolbear.systemd-unit-file
         packages.nixpkgs.vscode-extensions.eamodio.gitlens
         packages.nixpkgs.vscode-extensions.jkillian.custom-local-formatters
+        packages.nixpkgs.vscode-extensions.redhat.vscode-yaml
         packages.nixpkgs.vscode-extensions.haskell.haskell
         packages.nixpkgs.vscode-extensions.mads-hartmann.bash-ide-vscode
         packages.nixpkgs.vscode-extensions.ms-python.python
@@ -46,6 +47,12 @@ _: with _; utils.script {
           publisher = "magicstack";
           version = "1.1.0";
           sha256 = "08zwzjw2j2ilisasryd73x63ypmfv7pcap66fcpmkmnyb7jgs6nv";
+        }
+        {
+          name = "prettify-json";
+          publisher = "mohsen1";
+          version = "0.0.3";
+          sha256 = "1spj01dpfggfchwly3iyfm2ak618q2wqd90qx5ndvkj3a7x6rxwn";
         }
       ];
     };
@@ -91,7 +98,7 @@ _: with _; utils.script {
       "diffEditor.maxComputationTime" = 0;
       "diffEditor.renderSideBySide" = false;
       "diffEditor.wordWrap" = "on";
-      "editor.cursorStyle" = "underline";
+      "editor.cursorStyle" = "line";
       "editor.defaultFormatter" = "jkillian.custom-local-formatters";
       "editor.formatOnPaste" = false;
       "editor.formatOnSave" = true;
@@ -113,8 +120,8 @@ _: with _; utils.script {
       "files.insertFinalNewline" = true;
       "files.trimFinalNewlines" = true;
       "files.trimTrailingWhitespace" = true;
-      "python.analysis.autoSearchPaths" = false;
-      "python.analysis.diagnosticMode" = "openFilesOnly";
+      "python.analysis.autoSearchPaths" = true;
+      "python.analysis.diagnosticMode" = "workspace";
       "python.formatting.provider" = "none";
       "python.languageServer" = "Pylance";
       "python.linting.enabled" = true;
@@ -146,7 +153,15 @@ _: with _; utils.script {
       "workbench.editor.openPositioning" = "last";
       "workbench.settings.editor" = "json";
       "workbench.startupEditor" = "none";
+      "workbench.iconTheme" = "vscode-icons";
     };
+    argsKeyBindings = builtins.toJSON [
+      {
+        key = "ctrl+d";
+        command = "editor.action.copyLinesDownAction";
+        when = "editorTextFocus && !editorReadonly";
+      }
+    ];
   };
   src = ./activate.sh;
 }
