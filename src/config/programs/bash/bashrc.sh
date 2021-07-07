@@ -3,10 +3,11 @@
 function dev_env {
   local code="${1}"
 
-  cd "${PRODUCT}" \
+  pushd "${PRODUCT}" \
     && source .envrc* \
     && CACHIX_FLUIDATTACKS_TOKEN= ./m "makes.dev.${code}" \
-    && source "out/makes-dev-${code//./-}"
+    && source "out/makes-dev-${code//./-}" \
+    && popd
 }
 
 function export_fluid_var {
