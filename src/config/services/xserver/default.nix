@@ -5,7 +5,7 @@ _: with _; {
     };
   };
   displayManager = {
-    gdm = {
+    lightdm = {
       enable = true;
     };
   };

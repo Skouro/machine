@@ -14,4 +14,8 @@ _: with _;
       size = 8000; # MB
     }
   ];
+  hardware.pulseaudio = {
+    enable = true;
+  };
+  hardware.enableAllFirmware = true;
 }
