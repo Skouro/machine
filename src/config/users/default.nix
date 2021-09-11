@@ -12,6 +12,7 @@ _: with _; {
         "docker"
         "networkmanager"
         "wheel"
+        "adbusers"
       ];
       home = abs.home;
       isNormalUser = true;

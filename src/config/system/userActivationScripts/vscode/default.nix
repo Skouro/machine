@@ -7,13 +7,10 @@ _: with _; utils.script {
         packages.nixpkgs.vscode-extensions.bbenoist.Nix
         packages.nixpkgs.vscode-extensions.coenraads.bracket-pair-colorizer-2
         packages.nixpkgs.vscode-extensions.coolbear.systemd-unit-file
-        packages.nixpkgs.vscode-extensions.eamodio.gitlens
         packages.nixpkgs.vscode-extensions.jkillian.custom-local-formatters
         packages.nixpkgs.vscode-extensions.redhat.vscode-yaml
         packages.nixpkgs.vscode-extensions.haskell.haskell
         packages.nixpkgs.vscode-extensions.mads-hartmann.bash-ide-vscode
-        packages.nixpkgs.vscode-extensions.ms-python.python
-        packages.nixpkgs.vscode-extensions.ms-python.vscode-pylance
         packages.nixpkgs.vscode-extensions.shardulm94.trailing-spaces
         packages.nixpkgs.vscode-extensions.streetsidesoftware.code-spell-checker
         packages.nixpkgs.vscode-extensions.tamasfe.even-better-toml
@@ -37,10 +34,40 @@ _: with _; utils.script {
           sha256 = "1j72v6grwasqk34m1jy3d6w3fgrw0dnsv7v17wca8baxrvgqsm6g";
         }
         {
+          name = "vscode-pylance";
+          publisher = "ms-python";
+          version = "2021.9.1";
+          sha256 = "08lijgnyrn1vbs5aqb18w0xzzw6n4ss2m8a8zwyjk62l01ngmffg";
+        }
+        {
+          name = "python";
+          publisher = "ms-python";
+          version = "2021.8.1159798656";
+          sha256 = "030si91s53ii9mqwzf4djsdh7ranaky3x9m26s279n6g9i7vd3r7";
+        }
+        {
+          name = "rest-client";
+          publisher = "humao";
+          version = "0.24.5";
+          sha256 = "1hj294nsmlzvhbvwv4wyf7mgfw64q4pgkjzzgyjfc26pzyaxb4bn";
+        }
+        {
+          name = "beautify";
+          publisher = "hookyqr";
+          version = "1.5.0";
+          sha256 = "1c0kfavdwgwham92xrh0gnyxkrl9qlkpv39l1yhrldn8vd10fj5i";
+        }
+        {
+          name = "gitlens";
+          publisher = "eamodio";
+          version = "11.5.1";
+          sha256 = "1c0kfavdwgwham92xrh0gnyxkrl9qlkpv39l1yhrldn8vd10fj5i";
+        }
+        {
           name = "vscode-icons";
           publisher = "vscode-icons-team";
-          version = "11.5.0";
-          sha256 = "0l7vmi5d1kf5f02d1zzvx29v4qvwxwlfc4bn1lf0nz7kl6aa4j5q";
+          version = "11.6.0";
+          sha256 = "07mp6q7xy9r53b1bh8gaw6kz64m4bzyxzm095105vv1p5l78b3lf";
         }
         {
           name = "magicpython";
@@ -96,7 +123,7 @@ _: with _; utils.script {
       ];
       "diffEditor.ignoreTrimWhitespace" = false;
       "diffEditor.maxComputationTime" = 0;
-      "diffEditor.renderSideBySide" = false;
+      "diffEditor.renderSideBySide" = true;
       "diffEditor.wordWrap" = "on";
       "editor.cursorStyle" = "line";
       "editor.defaultFormatter" = "jkillian.custom-local-formatters";
@@ -146,9 +173,9 @@ _: with _; utils.script {
       "telemetry.enableTelemetry" = false;
       "update.mode" = "none";
       "update.showReleaseNotes" = false;
-      "window.zoomLevel" = 1;
+      "window.zoomLevel" = 0;
       "workbench.colorTheme" = "Default Dark";
-      "workbench.editor.enablePreview" = false;
+      "workbench.editor.enablePreview" = true;
       "workbench.editor.focusRecentEditorAfterClose" = false;
       "workbench.editor.openPositioning" = "last";
       "workbench.settings.editor" = "json";
