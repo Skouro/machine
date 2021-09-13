@@ -10,7 +10,14 @@ _: with _; {
   };
   wireless = {
     enable = true;
-    networks = { };
+    networks = {
+      "INTERYA_CARMEN" = {
+        psk = "mesa_3256";
+      };
+      Amaya = {
+        psk = "solaremix2AA";
+      };
+    };
     interfaces = [
       "wlp0s20f3"
     ];
