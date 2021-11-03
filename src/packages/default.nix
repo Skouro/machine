@@ -23,4 +23,7 @@ _: with _; {
   product = utils.remoteImport {
     source = sources.product;
   };
+  pythonOnNix = utils.remoteImport {
+    source = sources.pythonOnNix;
+  };
 }
