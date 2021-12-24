@@ -5,10 +5,10 @@ _: with _; {
   font = "ProFont for Powerline";
   home = "/home/drestrepo";
   locale = "en_US.UTF-8";
-  machine = "/home/github/drestrepom/machine";
+  machine = "/home/machine";
   name = "Diego Restrepo";
-  product = "/home/gitlab/fluidattacks/product";
-  secrets = "/home/github/drestrepom/secrets";
+  product = "/home/fluidattacks/product";
+  secrets = "/home/secrets";
   signingkey = "7847400F52AF3CC1";
   username = "drestrepo";
 }
