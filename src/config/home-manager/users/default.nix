@@ -3,14 +3,14 @@ _: with _;{
     dconf = {
       settings = with lib.hm.gvariant; {
         "org/gnome/desktop/a11y" = {
-          always-show-universal-access-status = true;
+          always-show-universal-access-status = false;
         };
         "org/gnome/desktop/a11y/applications" = {
           screen-magnifier-enabled = false;
         };
         "org/gnome/desktop/a11y/magnifier" = {
           lens-mode = false;
-          mag-factor = 2.0;
+          mag-factor = 1.0;
           mouse-tracking = "proportional";
           screen-position = "full-screen";
           scroll-at-edges = false;
@@ -25,12 +25,12 @@ _: with _;{
           ];
         };
         "org/gnome/desktop/interface" = {
-          cursor-size = 48;
+          cursor-size = 30;
           gtk-im-module = "ibus";
-          gtk-theme = "HighContrast";
-          icon-theme = "HighContrast";
+          gtk-theme = "Orchis";
+          icon-theme = "Orchis";
           show-battery-percentage = true;
-          text-scaling-factor = 1.5;
+          text-scaling-factor = 1;
         };
         "org/gnome/desktop/peripherals/mouse" = {
           natural-scroll = false;
@@ -40,10 +40,12 @@ _: with _;{
           two-finger-scrolling-enabled = true;
         };
         "org/gnome/desktop/session" = {
-          idle-delay = mkUint32 0;
+          idle-delay = mkUint32 300;
         };
         "org/gnome/desktop/wm/preferences" = {
-          theme = "HighContrast";
+          theme = "Orchis";
+          button-layout = "appmenu:minimize,close";
+          visual-bell = "true";
         };
         "org/gnome/settings-daemon/plugins/color" = {
           night-light-enabled = false;
@@ -55,6 +57,7 @@ _: with _;{
         "org/gnome/settings-daemon/plugins/media-keys" = {
           custom-keybindings = [
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+            "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
           ];
           help = [ ];
         };
@@ -62,6 +65,11 @@ _: with _;{
           binding = "<Primary><Alt>t";
           command = "gnome-terminal";
           name = "gnome-terminal";
+        };
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+          binding = "Print";
+          command = "flameshot gui";
+          name = "flameshot";
         };
         "org/gnome/settings-daemon/plugins/power" = {
           idle-dim = false;
@@ -73,6 +81,7 @@ _: with _;{
     home = {
       enableDebugInfo = true;
       homeDirectory = abs.home;
+      enableNixpkgsReleaseCheck = false;
       language = {
         address = abs.locale;
         base = abs.locale;
@@ -221,13 +230,13 @@ _: with _;{
             extraOptions = {
               PreferredAuthentications = "publickey";
             };
-            identityFile = "${abs.secrets}/machine/ssh/drestrepom";
+            identityFile = "${abs.secrets}/machine/ssh/drestrepoatfluid";
           };
           "gitlab.com" = {
             extraOptions = {
               PreferredAuthentications = "publickey";
             };
-            identityFile = "${abs.secrets}/machine/ssh/drestrepom";
+            identityFile = "${abs.secrets}/machine/ssh/drestrepoatfluid";
           };
         };
       };
@@ -243,16 +252,16 @@ _: with _;{
     };
     xdg = {
       desktopEntries = {
-        timedoctorNix1 = with packages.nixpkgs; {
-          name = "timedoctor-nix";
-          exec = "${timedoctor}/bin/${timedoctor.name}";
-          terminal = false;
-        };
-        timedoctorNix2 = with packages.nixpkgs; {
-          name = "timedoctor-nix2";
-          exec = "ELECTRON_ENABLE_LOGGING=true ${timedoctor}/bin/${timedoctor.name}";
-          terminal = true;
-        };
+        # timedoctorNix1 = with packages.nixpkgs; {
+        #   name = "timedoctor-nix";
+        #   exec = "${timedoctor}/bin/${timedoctor.name}";
+        #   terminal = false;
+        # };
+        # timedoctorNix2 = with packages.nixpkgs; {
+        #   name = "timedoctor-nix2";
+        #   exec = "ELECTRON_ENABLE_LOGGING=true ${timedoctor}/bin/${timedoctor.name}";
+        #   terminal = true;
+        # };
       };
       enable = true;
     };
