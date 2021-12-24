@@ -95,5 +95,4 @@ in
   packages.nixpkgs.yq
   packages.nixpkgs.kompose
   packages.nixpkgs.kubectl
-  packages.nixpkgs.kubernetes
 ]
