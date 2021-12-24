@@ -1,6 +1,30 @@
-_: with _; [
+_: with _;
+let
+  my-python-packages = python-packages: with python-packages; [
+    pandas
+    requests
+    jupyter
+    isort
+    mypy
+    matplotlib
+    pydot
+    aiohttp
+  ];
+  python-with-my-packages = packages.nixpkgs.python38.withPackages my-python-packages;
+in
+[
+  packages.pythonOnNix.projects.prospector.latest.pythonLatest.bin
   packages.nixpkgs.awscli
+  packages.nixpkgs.foxitreader
+  packages.nixpkgs.cargo
+  packages.nixpkgs.rustc
+  packages.nixpkgs.rustfmt
+  packages.nixpkgs.rustup
+  packages.nixpkgs.gradle
+  packages.nixpkgs.kotlin
   packages.nixpkgs.bat
+  packages.nixpkgs.gparted
+  packages.nixpkgs.k3s
   packages.nixpkgs.bind
   packages.nixpkgs.binutils
   packages.nixpkgs.black
@@ -8,21 +32,27 @@ _: with _; [
   packages.nixpkgs.cachix
   packages.nixpkgs.cargo
   packages.nixpkgs.coreutils
+  packages.nixpkgs.copyq
   packages.nixpkgs.curl
   packages.nixpkgs.dconf2nix
   packages.nixpkgs.diction
+  packages.nixpkgs.discord
   packages.nixpkgs.diffoscope
   packages.nixpkgs.dmenu
+  packages.nixpkgs.netbeans
   packages.nixpkgs.gcc
   packages.nixpkgs.ghc
   packages.nixpkgs.gnome.dconf-editor
   packages.nixpkgs.gnumake
   packages.nixpkgs.google-chrome
+  packages.nixpkgs.opera
   packages.nixpkgs.gnupg
+  packages.nixpkgs.ghc
   packages.nixpkgs.guake
   packages.nixpkgs.pinentry-gnome
   packages.nixpkgs.hugo
   packages.nixpkgs.jq
+  packages.nixpkgs.gremlin-console
   packages.nixpkgs.just
   packages.nixpkgs.kubectl
   packages.nixpkgs.lsof
@@ -36,23 +66,26 @@ _: with _; [
   packages.nixpkgs.nixpkgs-fmt
   packages.nixpkgs.nixpkgs-review
   packages.nixpkgs.nodejs
+  packages.nixpkgs.flameshot
   packages.nixpkgs.openjdk
   packages.nixpkgs.optipng
+  packages.nixpkgs.libreoffice
   packages.nixpkgs.parallel
   packages.nixpkgs.parted
   packages.nixpkgs.patchelf
   packages.nixpkgs.pcre
   packages.nixpkgs.peek
   packages.nixpkgs.pinentry
-  packages.nixpkgs.python38
-  packages.nixpkgs.python38Packages.isort
+  python-with-my-packages
   packages.nixpkgs.qemu
   packages.nixpkgs.shadow
   packages.nixpkgs.shfmt
   packages.nixpkgs.sops
+  packages.nixpkgs.spotify
   packages.nixpkgs.terraform
   packages.nixpkgs.tokei
   packages.nixpkgs.traceroute
+  packages.nixpkgs.translate-shell
   packages.nixpkgs.tree
   packages.nixpkgs.vlc
   packages.nixpkgs.vscode
@@ -60,4 +93,7 @@ _: with _; [
   packages.nixpkgs.wpa_supplicant
   packages.nixpkgs.xclip
   packages.nixpkgs.yq
+  packages.nixpkgs.kompose
+  packages.nixpkgs.kubectl
+  packages.nixpkgs.kubernetes
 ]
