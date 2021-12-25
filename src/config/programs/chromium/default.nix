@@ -7,7 +7,7 @@ _: with _; {
   # https://chromeenterprise.google/policies/
   extraOpts = {
     BookmarkBarEnabled = true;
-    BrowserSignin = 0;
+    BrowserSignin = 1;
     DefaultBrowserSettingEnabled = false;
     ManagedBookmarks = [
       { toplevel_name = "Go"; }

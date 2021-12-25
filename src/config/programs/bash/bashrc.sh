@@ -1,5 +1,8 @@
 # shellcheck shell=bash
 
+export PATH="$(which aws_completer)/:${PATH}"
+complete -C "$(which aws_completer)" aws
+
 function dev_env {
   local code="${1}"
 
@@ -15,18 +18,37 @@ function export_fluid_var {
 }
 
 function export_fluid_aws_vars {
-  for var in "${1^^}_DEV_AWS_ACCESS_KEY_ID" "${1^^}_PROD_AWS_ACCESS_KEY_ID"; do
-    export_fluid_var "${var}"
-  done \
+  export_fluid_var "PROD_${1^^}_AWS_ACCESS_KEY_ID" \
     && export AWS_ACCESS_KEY_ID="${!var}" \
-    && export DEV_AWS_ACCESS_KEY_ID="${!var}" \
-    && export PROD_AWS_ACCESS_KEY_ID="${!var}" \
-    && for var in "${1^^}_DEV_AWS_SECRET_ACCESS_KEY" "${1^^}_PROD_AWS_SECRET_ACCESS_KEY"; do
-      export_fluid_var "${var}"
-    done \
-    && export AWS_SECRET_ACCESS_KEY="${!var}" \
-    && export DEV_AWS_SECRET_ACCESS_KEY="${!var}" \
-    && export PROD_AWS_SECRET_ACCESS_KEY="${!var}"
+    && export_fluid_var "PROD_${1^^}_AWS_SECRET_ACCESS_KEY" \
+    && export AWS_SECRET_ACCESS_KEY="${!var}"
+}
+function export_fluid_dev {
+  export_fluid_var "DEV_AWS_ACCESS_KEY_ID" \
+    && export_fluid_var "DEV_AWS_SECRET_ACCESS_KEY" \
+    && export AWS_SECRET_ACCESS_KEY="${DEV_AWS_SECRET_ACCESS_KEY}" \
+    && export AWS_ACCESS_KEY_ID="${DEV_AWS_ACCESS_KEY_ID}"
+}
+function export_fluid_prod {
+  export_fluid_var "PROD_MAKES_AWS_ACCESS_KEY_ID" \
+    && export_fluid_var "PROD_MAKES_AWS_SECRET_ACCESS_KEY" \
+    && export AWS_SECRET_ACCESS_KEY="${PROD_MAKES_AWS_SECRET_ACCESS_KEY}" \
+    && export AWS_ACCESS_KEY_ID="${PROD_MAKES_AWS_ACCESS_KEY_ID}"
+}
+
+function ol() {
+  eval $(
+    python3 -m aws_okta_processor authenticate \
+      --user "drestrepo@fluidattacks.com" \
+      --pass "$OKTA_PASS" \
+      --organization "fluidattacks.okta.com" \
+      --application "https://fluidattacks.okta.com/home/amazon_aws/0oa9ahz3rfx1SpStS357/272" \
+      --silent \
+      --duration 32400 \
+      --environment
+  )
+  export DEV_AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+  export DEV_AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 }
 
 function fetch_fluid_var {
@@ -37,11 +59,22 @@ function fetch_fluid_var {
 }
 
 source "${SECRETS}/machine/secrets.sh"
+export PATH="/home/${USER}/mutable_node_modules/bin/:$PATH"
 
-export_fluid_aws_vars makes
-# export_fluid_aws_vars integrates
-export_fluid_aws_vars skims
+export_fluid_dev
 
-# dev_env integrates.back
-dev_env skims
-# dev_env melts
+if [[ "$(pwd)" == *"product/skims"* ]]; then
+  output=skims
+  export_fluid_aws_vars skims
+  source "${HOME}/.makes/out-dev-${output}/template"
+fi
+
+if [[ "$(pwd)" == *"product/integrates"* ]]; then
+  pushd "${PRODUCT}"
+  output=integratesBack
+  export_fluid_aws_vars integrates
+  source "${HOME}/.makes/out-dev-${output}/template"
+  popd
+fi
+
+export DIRENV_WARN_TIMEOUT=1h
